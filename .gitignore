@@ -2,5 +2,4 @@
 .DS_Store
 
 # Data
-urls.txt
-hashes.txt
+data/
