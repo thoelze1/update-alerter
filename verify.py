@@ -18,7 +18,6 @@ def verify():
     # Check URL
     response = urllib2.urlopen(url)
     html = response.read()
-    print html
     hasher.update(html)
     hexhash = hasher.hexdigest()
     # Append URL log
