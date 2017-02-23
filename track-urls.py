@@ -1,6 +1,9 @@
 import urllib2
 import hashlib
+import time
+import sys
 from time import gmtime, strftime
+from datetime import datetime, timedelta
 
 def track():
   # Get URLs
@@ -9,7 +12,7 @@ def track():
   # Prep hasher
   hasher = hashlib.md5()
   # Check each URL
-  for idx, url in enumerate(urls):
+  for url in urls:
     # Remove newline
     url = url.strip()
     # Open URL log
@@ -24,24 +27,28 @@ def track():
     hasher.update(html)
     hexhash = hasher.hexdigest()
     # Add timestamp to URL log
+    timestamp = strftime("%Y-%m-%d %H:%M:%S", gmtime())
     if len(changes) == 0:
       # Denote new URL
-      changes.append(strftime("%Y-%m-%d %H:%M:%S START\n", gmtime()))
-      changes.append(hexhash+'\n')
-    elif hexhash == changes[-1].strip():
-      # Denote no change
-      changes[-1] = strftime("%Y-%m-%d %H:%M:%S\n", gmtime())
-      changes.append(hexhash+'\n')
+      timestamp += ' START'
     else:
-      # Denote change
-      changes[-1] = strftime("%Y-%m-%d %H:%M:%S CHANGE\n", gmtime())
-      changes.append(hexhash+'\n')
+      if hexhash != changes.pop().strip():
+        # Denote change
+        timestamp += ' CHANGE'
+    changes.append(timestamp+'\n'+hexhash+'\n')
     # Close URL log
     urlfile.seek(0)
     urlfile.truncate()
     urlfile.writelines(changes)
     urlfile.close()
   urlsfile.close()
-  
+
 if __name__ == "__main__":
-	track()
+  try:
+    while True:
+      track()
+      dt = datetime.now() + timedelta(seconds=1)
+      while datetime.now() < dt:
+        time.sleep(1)
+  except KeyboardInterrupt:
+    sys.exit()
