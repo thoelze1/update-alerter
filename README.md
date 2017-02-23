@@ -1,5 +1,8 @@
-# Web Update Alerter
-This code will check URLs for changes.
+# Tracking Web Content
+I use Python to compare recent and stored snapshots of websites to determine when content at a URL has changed.
+
+## Storing Snapshots
+A text file track changes for each URL. Content at a URL is saved as an MD5 hash and updated regulary. Each new hash is compared to the existing hash. For each omparison, the corresponding textfile is timestamped to reflect change.
 
 ## Dangers
-The simplest way to check for changes would be to first save a source file online, and then compare the current source with the stored source at regular intervals. Saving files without sanitizing them is dangerous. Instead, generating a hash from a source file may be safer.
+Saving files without sanitizing them can be dangerous.
