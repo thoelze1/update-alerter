@@ -2,6 +2,7 @@ import urllib2
 import hashlib
 import time
 import sys
+
 from time import gmtime, strftime
 from datetime import datetime, timedelta
 
@@ -21,7 +22,7 @@ def track():
     except IOError:
       urlfile = open('data/'+url.replace('/',u'\u2215'),'w+')
     changes = urlfile.readlines()
-    # Hash content
+    # Hash the html
     response = urllib2.urlopen(url)
     html = response.read()
     hasher.update(html)
@@ -31,10 +32,12 @@ def track():
     if len(changes) == 0:
       # Denote new URL
       timestamp += ' START'
-    else:
-      if hexhash != changes.pop().strip():
-        # Denote change
-        timestamp += ' CHANGE'
+    elif hexhash != changes.pop().strip():
+      # Denote change
+      timestamp += ' CHANGE'
+    elif len(changes[-1]) < 22 and len(changes[-2]) < 22:
+      # Overwrite timestamp
+      changes.pop()
     changes.append(timestamp+'\n'+hexhash+'\n')
     # Close URL log
     urlfile.seek(0)
