@@ -11,7 +11,8 @@ Specify your URLs and add you Twilio API keys.
     vi web-content-tracker/data/urls.txt
     vi web-content-tracker/config.py
 
-Run the script
+Run the script.
+
     python track-urls.py &
 
 # Download from Scratch
