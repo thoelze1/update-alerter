@@ -3,8 +3,19 @@ import hashlib
 import time
 import sys
 
-from time import gmtime, strftime
 from datetime import datetime, timedelta
+from twilio.rest import TwilioRestClient
+
+sys.dont_write_bytecode=True
+import config
+
+def sendSMS(text):
+  account_sid = config.account_sid
+  auth_token = config.auth_token
+  from_number = config.twilio_number
+  to_number = config.my_number
+  client = TwilioRestClient(account_sid, auth_token)
+  message = client.messages.create(to=to_number, from_=from_number, body=text)
 
 def track():
   # Get URLs
@@ -32,13 +43,14 @@ def track():
     hasher.update(html)
     hexhash = hasher.hexdigest()
     # Add timestamp to URL log
-    timestamp = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     if len(changes) == 0:
       # Denote new URL
       timestamp += ' START'
     elif hexhash != changes.pop().strip():
       # Denote change
       timestamp += ' CHANGE'
+      sendSMS(url + ' just changed')
     elif len(changes[-1]) < 22 and len(changes[-2]) < 22:
       # Overwrite timestamp
       changes.pop()
@@ -56,6 +68,6 @@ if __name__ == "__main__":
       track()
       dt = datetime.now() + timedelta(seconds=1)
       while datetime.now() < dt:
-        time.sleep(1)
+        time.sleep(0.01)
   except KeyboardInterrupt:
     sys.exit()
