@@ -16,6 +16,11 @@ def track():
   for url in urls:
     # Remove newline
     url = url.strip()
+    # Verify the html
+    try:
+      response = urllib2.urlopen(url)
+    except urllib2.HTTPError:
+      continue
     # Open URL log
     try:
       urlfile = open('data/'+url.replace('/',u'\u2215'),'r+')
@@ -23,7 +28,6 @@ def track():
       urlfile = open('data/'+url.replace('/',u'\u2215'),'w+')
     changes = urlfile.readlines()
     # Hash the html
-    response = urllib2.urlopen(url)
     html = response.read()
     hasher.update(html)
     hexhash = hasher.hexdigest()
