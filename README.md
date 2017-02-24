@@ -2,6 +2,8 @@
 Compare current and stored snapshots of websites to determine when content at a URL has changed. Start tracking by cloning the repository, specifying URLs, and executing the script.
 
     git clone https://www.github.com/thoelze1/web-content-tracker.git
+    python get-pip.py --user
+    pip install twilio
     vi web-content-tracker/data/urls.txt
     python track-urls.py &
 
