@@ -1,7 +1,5 @@
 # Tracking Web Content
-I use Python to compare recent and stored snapshots of websites to determine when content at a URL has changed.
-
-Start tracking by cloning the repository, specifying URLs, and executing the script.
+Compare recent and stored snapshots of websites to determine when content at a URL has changed. Start tracking by cloning the repository, specifying URLs, and executing the script.
 
     git clone https://www.github.com/thoelze1/web-content-tracker.git
     vi web-content-tracker/data/urls.txt
