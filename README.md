@@ -1,9 +1,12 @@
 # Tracking Web Content
-Compare recent and stored snapshots of websites to determine when content at a URL has changed. Start tracking by cloning the repository, specifying URLs, and executing the script.
+Compare current and stored snapshots of websites to determine when content at a URL has changed. Start tracking by cloning the repository, specifying URLs, and executing the script.
 
     git clone https://www.github.com/thoelze1/web-content-tracker.git
     vi web-content-tracker/data/urls.txt
     python track-urls.py &
+
+## Input URLs
+The script expects each line of data/urls.txt to contain exactly one URL and nothing else.
 
 ## Storing Snapshots
 A text file (URL log) tracks changes for each URL. Content at a URL is saved as an MD5 hash and updated regulary. Each new hash is compared to the existing hash. For each comparison, the corresponding log is timestamped and change is noted when present.
