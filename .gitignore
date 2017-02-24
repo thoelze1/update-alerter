@@ -2,4 +2,5 @@
 .DS_Store
 
 # Data
-data/
+data2/
+config2.py
