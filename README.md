@@ -1,31 +1,29 @@
 # Track Website Changes with SMS
-Immediately find out when a website has changed.
+Compare current and stored snapshots of websites to determine when content at a URL has changed. Get a text message the moment a web page changes!
 
-# Download
+## Download
 Clone the repository.
 
     git clone https://www.github.com/thoelze1/web-content-tracker.git
 
-Specify your URLs and add you Twilio API keys.
-    
-    vi web-content-tracker/data/urls.txt
-    vi web-content-tracker/config.py
+Specify the URLs to track in data/urls.txt
 
-Run the script.
+    nano web-content-tracker/data/urls.txt
+
+Get a Twilio API key and a Twilio phone number to send texts. Add your Twilio details to config.py and specify a phone number to receive texts.
+    
+    nano web-content-tracker/config.py
+
+Run the script!
 
     python track-urls.py &
 
-# Download from Scratch
-First donwload Python.
+## Download Dependencies 
 
-Next download pip.
-    python get-pip.py --user
+Download Python and pip as described [here](http://thelazylog.com/install-python-as-local-user-on-linux/). Then use pip to install Flask and the Twilio library for Python.
 
-Use pip to download Flask and the Twilio library for Python.
+    pip install Flask
     pip install twilio
-
-## How It Works
-Compare current and stored snapshots of websites to determine when content at a URL has changed and . Start tracking by cloning the repository, specifying URLs, and executing the script.
 
 ## Input URLs
 The script expects each line of data/urls.txt to contain exactly one URL and nothing else.
