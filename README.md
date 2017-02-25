@@ -2,20 +2,11 @@
 Compare current and stored snapshots of websites to determine when content at a URL has changed. Get a text message the moment a web page changes!
 
 ## How to Use
-Clone the repository.
+Clone the repository and specify URLs to track (data/urls.txt). You'll need a Twilio API key and a Twilio phone number to send texts. Add your Twilio details and your personal phone number to config.py. Now you can run the script!
 
     git clone https://www.github.com/thoelze1/web-content-tracker.git
-
-Specify the URLs to track in data/urls.txt
-
     nano web-content-tracker/data/urls.txt
-
-Get a Twilio API key and a Twilio phone number to send texts. Add your Twilio details to config.py and specify a phone number to receive texts.
-    
     nano web-content-tracker/config.py
-
-Run the script!
-
     python track-urls.py &
 
 ## How to Download Dependencies 
