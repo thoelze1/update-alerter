@@ -1,7 +1,7 @@
 # Track Website Changes with SMS
 Compare current and stored snapshots of websites to determine when content at a URL has changed. Get a text message the moment a web page changes!
 
-## Download
+## How to Use
 Clone the repository.
 
     git clone https://www.github.com/thoelze1/web-content-tracker.git
@@ -18,7 +18,7 @@ Run the script!
 
     python track-urls.py &
 
-## Download Dependencies 
+## How to Download Dependencies 
 
 Download Python and pip as described [here](http://thelazylog.com/install-python-as-local-user-on-linux/). Then use pip to install Flask and the Twilio library for Python.
 
