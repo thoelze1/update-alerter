@@ -29,3 +29,6 @@ Each URL log contains a series of timestamps followed by the previous MD5 hash. 
 
 ## Dangers
 Saving files without sanitizing them can be dangerous.
+
+## Work in Progress
+I am running this script on a shared machine: http://serverfault.com/questions/227958/on-a-shared-server-how-do-you-run-a-script-process-at-startup
